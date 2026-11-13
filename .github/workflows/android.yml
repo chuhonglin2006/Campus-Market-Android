@@ -41,6 +41,9 @@ jobs:
         run: |
           echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android/app/campus-market-release.jks
 
+          echo "Checking keystore..."
+          ls -lh android/app/campus-market-release.jks
+
       - name: Build Signed Release APK
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -50,8 +53,12 @@ jobs:
           chmod +x android/gradlew
           cd android
 
+          KEYSTORE_PATH="$PWD/app/campus-market-release.jks"
+
+          echo "Using keystore: $KEYSTORE_PATH"
+
           ./gradlew assembleRelease \
-            -Pandroid.injected.signing.store.file=app/campus-market-release.jks \
+            -Pandroid.injected.signing.store.file="$KEYSTORE_PATH" \
             -Pandroid.injected.signing.store.password="$ANDROID_KEYSTORE_PASSWORD" \
             -Pandroid.injected.signing.key.alias="$ANDROID_KEY_ALIAS" \
             -Pandroid.injected.signing.key.password="$ANDROID_KEY_PASSWORD"
