@@ -322,7 +322,7 @@
 
             <img
               v-if="product.images?.length"
-              :src="getImageUrl(product.images[0])"
+              :src="product.images[0]"
               :alt="product.name"
               class="product-image"
             />
@@ -573,7 +573,7 @@
 
             <img
               v-if="product.images?.length"
-              :src="getImageUrl(product.images[0])"
+              :src="product.images[0]"
               :alt="product.name"
               class="product-image"
             />
@@ -1019,7 +1019,6 @@
 
 
 <script setup>
-import { getImageUrl } from '../utils/image.js'
 
 import {
   ref,

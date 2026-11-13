@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
   appId: 'com.chuhl.campusmarket',
-  appName: 'Campus Market',
+  appName: '校园二手交易平台',
   webDir: 'dist'
 }
 

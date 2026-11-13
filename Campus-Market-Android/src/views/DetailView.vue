@@ -11,7 +11,6 @@ import { productsApi } from '../api/products'
 import { reportsApi } from '../api/reports'
 import { formatDateTime } from '../utils/format'
 import { getApiErrorMessage } from '../utils/apiError'
-import { getImageUrl } from '../utils/image.js'
 
 const props = defineProps({
   id: {
@@ -406,10 +405,10 @@ const productImages = computed(() => {
   return product.value.images
     .map((image) => {
       if (typeof image === 'string') {
-        return getImageUrl(image)
+        return image
       }
 
-      return getImageUrl(
+      return (
         image?.image_url ||
         image?.url ||
         ''
