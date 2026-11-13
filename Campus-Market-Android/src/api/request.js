@@ -8,7 +8,7 @@ const API_BASE_URL = Capacitor.isNativePlatform()
 
 const request = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 15000,
 })
 
 request.interceptors.request.use(
