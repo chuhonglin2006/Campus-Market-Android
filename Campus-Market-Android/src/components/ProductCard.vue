@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue'
 import { ICON_HEART } from '../utils/icons'
 import { formatDateTime, formatPrice } from '../utils/format'
+import { getImageUrl } from '../utils/image.js'
 import CategoryIcon from './CategoryIcon.vue'
 
 const props = defineProps({
@@ -50,7 +51,7 @@ function onOpen() {
     <div class="card-media">
       <img
         v-if="product.images && product.images.length > 0 && !imageError"
-        :src="product.images[0]"
+        :src="getImageUrl(product.images[0])"
         :alt="product.name"
         class="product-image"
         loading="lazy"
@@ -132,7 +133,8 @@ function onOpen() {
 .card-media {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 12px;
 }
@@ -259,18 +261,22 @@ function onOpen() {
    ========================= */
 
 .card-body {
-  padding: 12px 2px;
+  min-width: 0;
+  padding: 12px 10px 14px;
 }
 
 .card-title {
   margin: 0 0 8px;
 
+  min-height: 2.8em;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.4;
 
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .card-price-row {
@@ -294,6 +300,8 @@ function onOpen() {
 .card-meta {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
 
   margin-top: 8px;
 
@@ -301,9 +309,43 @@ function onOpen() {
   opacity: 0.6;
 }
 
+.card-meta span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .card-publish {
   margin: 6px 0 0;
   font-size: 12px;
   opacity: 0.6;
+}
+
+@media (max-width: 520px) {
+  .card-title {
+    min-height: 2.8em;
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+
+  .card-price {
+    font-size: 17px;
+  }
+
+  .card-publish {
+    display: none;
+  }
+
+  .card-body {
+    padding: 10px 9px 12px;
+  }
+
+  .fav-btn {
+    top: 7px;
+    right: 7px;
+    width: 34px;
+    height: 34px;
+  }
 }
 </style>

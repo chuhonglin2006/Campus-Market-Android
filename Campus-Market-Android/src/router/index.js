@@ -18,8 +18,7 @@ const routes = [
   { path: '/product/:id/edit', name: 'edit-product', component: EditProductView, props: true, meta: { requiresAuth: true } },
   { path: '/profile', name: 'profile', component: ProfileView, meta: { requiresAuth: true } },
   { path: '/orders/:id', name: 'order-detail', component: () => import('../views/OrderDetailView.vue'), props: true, meta: { requiresAuth: true } },
-  {path: '/chat/:conversationId', name: 'chat', component: () => import('../views/ChatView.vue'), props: true,meta: {requiresAuth: true,},},
-  { path: '/download', name: 'download', component: () => import('../views/DownloadView.vue') },
+  { path: '/chat/:conversationId', name: 'chat', component: () => import('../views/ChatView.vue'), props: true, meta: { requiresAuth: true, hideChrome: true } },
 ]
 
 const router = createRouter({

@@ -19,6 +19,7 @@ export const ICON_RECEIPT = '<path d="M6 3h12v18l-2.5-1.6L13 21l-2.5-1.6L8 21l-2
 export const ICON_HOME = '<path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'
 export const ICON_USER = '<circle cx="12" cy="8.2" r="3.4" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 20c1-3.6 4.2-5.6 7.5-5.6s6.5 2 7.5 5.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>'
 export const ICON_FLAG = '<path d="M6 3v18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6 4h11l-2.5 4L17 12H6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'
+export const ICON_PLUS = '<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'
 
 export const CATEGORIES = [
   { key: 'book', label: '教材书籍' },

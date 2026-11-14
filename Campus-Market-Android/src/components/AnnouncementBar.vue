@@ -38,7 +38,7 @@ function formatTime(value) {
 <template>
   <div v-if="latest" class="announcement-wrap">
     <div class="announcement-bar">
-      <span class="announcement-icon"></span>
+      <span class="announcement-icon">公告</span>
 
       <div class="announcement-window">
         <button
@@ -131,15 +131,25 @@ function formatTime(value) {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 18px;
+  padding:
+    0 max(18px, env(safe-area-inset-right))
+    0 max(18px, env(safe-area-inset-left));
   box-sizing: border-box;
   background: var(--card-bg, #ffffff);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--border);
 }
 
 .announcement-icon {
   flex: 0 0 auto;
-  font-size: 17px;
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .announcement-window {
@@ -208,7 +218,7 @@ function formatTime(value) {
   top: 100%;
   left: 0;
   right: 0;
-  max-height: min(480px, 70vh);
+  max-height: min(480px, 70dvh);
   overflow-y: auto;
   padding: 12px;
   background: var(--card-bg, #ffffff);
@@ -275,14 +285,18 @@ function formatTime(value) {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    max(20px, env(safe-area-inset-right))
+    calc(20px + env(safe-area-inset-bottom))
+    max(20px, env(safe-area-inset-left));
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.45);
 }
 
 .announcement-modal {
   width: min(560px, 100%);
-  max-height: 80vh;
+  max-height: 80dvh;
   overflow-y: auto;
   padding: 22px;
   box-sizing: border-box;
@@ -324,5 +338,51 @@ function formatTime(value) {
   line-height: 1.9;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  .announcement-bar {
+    min-height: 40px;
+    padding:
+      0 max(12px, env(safe-area-inset-right))
+      0 max(12px, env(safe-area-inset-left));
+  }
+
+  .announcement-panel {
+    max-height: min(420px, 68dvh);
+    padding: 8px 10px 10px;
+  }
+
+  .announcement-modal-mask {
+    align-items: flex-end;
+    padding:
+      calc(16px + env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      calc(12px + env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
+  }
+
+  .announcement-modal {
+    width: 100%;
+    max-height: 84dvh;
+    padding: 20px;
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement-marquee {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .announcement-marquee-text {
+    display: block;
+    max-width: 100%;
+    padding-left: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 </style>

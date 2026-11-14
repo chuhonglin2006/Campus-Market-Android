@@ -662,4 +662,55 @@ select:disabled {
   color: #fff;
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  .edit-page {
+    width: 100%;
+    margin: 0;
+    padding:
+      18px
+      max(14px, env(safe-area-inset-right))
+      40px
+      max(14px, env(safe-area-inset-left));
+  }
+
+  .page-header {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .page-header h1 {
+    font-size: 23px;
+  }
+
+  .back-button {
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+
+  input,
+  textarea,
+  select {
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+  .actions {
+    position: sticky;
+    bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 12px);
+    padding: 10px;
+    margin: 0 -10px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .1);
+  }
+
+  .actions button {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+  }
+}
 </style>

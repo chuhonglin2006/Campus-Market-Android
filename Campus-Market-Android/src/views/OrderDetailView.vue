@@ -2889,7 +2889,11 @@ onMounted(() => {
 @media (max-width: 768px) {
 
   .order-detail-page {
-    padding: 20px 14px 40px;
+    padding:
+      20px
+      max(14px, env(safe-area-inset-right))
+      40px
+      max(14px, env(safe-area-inset-left));
   }
 
 

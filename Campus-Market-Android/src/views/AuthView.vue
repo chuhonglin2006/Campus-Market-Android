@@ -284,6 +284,10 @@ onUnmounted(() => {
 <template>
   <div class="auth-wrap">
     <div class="auth-card">
+      <div class="auth-brand" aria-label="校园二手">
+        <span class="auth-brand-mark">E</span>
+        <span>校园二手</span>
+      </div>
 
       <h1 class="auth-title">
         {{ mode === 'login' ? '欢迎回来' : '注册账号' }}

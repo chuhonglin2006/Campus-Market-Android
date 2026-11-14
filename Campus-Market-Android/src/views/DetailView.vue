@@ -11,6 +11,7 @@ import { productsApi } from '../api/products'
 import { reportsApi } from '../api/reports'
 import { formatDateTime } from '../utils/format'
 import { getApiErrorMessage } from '../utils/apiError'
+import { getImageUrl } from '../utils/image.js'
 
 const props = defineProps({
   id: {
@@ -405,10 +406,10 @@ const productImages = computed(() => {
   return product.value.images
     .map((image) => {
       if (typeof image === 'string') {
-        return image
+        return getImageUrl(image)
       }
 
-      return (
+      return getImageUrl(
         image?.image_url ||
         image?.url ||
         ''
@@ -2414,15 +2415,18 @@ function openSeller() {
   .detail-grid {
     grid-template-columns: 1fr;
 
-    gap: 24px;
+    gap: 20px;
   }
 
   .detail-media {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
   }
 
   .detail-image {
-    height: 300px;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   }
 
   .image-nav {
@@ -2448,11 +2452,12 @@ function openSeller() {
   }
 
   .detail-title {
-    font-size: 24px;
+    margin: 12px 0 14px;
+    font-size: 23px;
   }
 
   .detail-price {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .detail-actions {
@@ -2477,11 +2482,15 @@ function openSeller() {
   .report-dialog {
     padding: 20px;
 
-    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);
   }
 
   .report-overlay {
-    padding: 12px;
+    padding:
+      calc(12px + env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      calc(12px + env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
   }
 
   .report-actions {

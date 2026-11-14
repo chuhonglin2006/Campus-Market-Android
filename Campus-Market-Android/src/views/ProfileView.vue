@@ -322,7 +322,7 @@
 
             <img
               v-if="product.images?.length"
-              :src="product.images[0]"
+              :src="getImageUrl(product.images[0])"
               :alt="product.name"
               class="product-image"
             />
@@ -573,7 +573,7 @@
 
             <img
               v-if="product.images?.length"
-              :src="product.images[0]"
+              :src="getImageUrl(product.images[0])"
               :alt="product.name"
               class="product-image"
             />
@@ -1019,6 +1019,7 @@
 
 
 <script setup>
+import { getImageUrl } from '../utils/image.js'
 
 import {
   ref,
@@ -2466,6 +2467,7 @@ onUnmounted(() => {
   margin: 0 auto;
   padding: 30px 24px 60px;
   box-sizing: border-box;
+  color: var(--ink);
 }
 
 
@@ -2482,6 +2484,7 @@ onUnmounted(() => {
   margin-bottom: 24px;
   border-radius: 18px;
   background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
@@ -2500,8 +2503,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #111827;
-  color: #ffffff;
+  background: var(--ink);
+  color: var(--bg);
   font-size: 28px;
   font-weight: 700;
 }
@@ -2515,7 +2518,7 @@ onUnmounted(() => {
 
 .user-text p {
   margin: 0;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 
@@ -2538,7 +2541,7 @@ onUnmounted(() => {
 
 .stat-label {
   margin-top: 5px;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
 }
 
@@ -2550,10 +2553,10 @@ onUnmounted(() => {
 .logout-btn {
   flex-shrink: 0;
   padding: 10px 18px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #ffffff;
-  color: #6b7280;
+  background: var(--surface);
+  color: var(--muted);
   cursor: pointer;
   font-size: 14px;
   white-space: nowrap;
@@ -2562,8 +2565,8 @@ onUnmounted(() => {
 
 
 .logout-btn:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: var(--panel);
+  color: var(--ink);
 }
 
 
@@ -2576,6 +2579,7 @@ onUnmounted(() => {
   margin-bottom: 24px;
   border-radius: 18px;
   background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
@@ -2594,7 +2598,7 @@ onUnmounted(() => {
 
 
 .section-title span {
-  color: #6b7280;
+  color: var(--muted);
   font-size: 14px;
 }
 
@@ -2620,13 +2624,13 @@ onUnmounted(() => {
 
 
 .chart-grid-line {
-  stroke: #e5e7eb;
+  stroke: var(--border);
   stroke-width: 1;
 }
 
 
 .chart-line {
-  stroke: #111827;
+  stroke: var(--ink);
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -2634,21 +2638,21 @@ onUnmounted(() => {
 
 
 .chart-point {
-  fill: #ffffff;
-  stroke: #111827;
+  fill: var(--surface);
+  stroke: var(--ink);
   stroke-width: 3;
 }
 
 
 .chart-amount {
-  fill: #111827;
+  fill: var(--ink);
   font-size: 12px;
   font-weight: 600;
 }
 
 
 .chart-date-text {
-  fill: #6b7280;
+  fill: var(--muted);
   font-size: 11px;
 }
 
@@ -2656,7 +2660,7 @@ onUnmounted(() => {
 .empty-sales {
   padding: 50px 0;
   text-align: center;
-  color: #9ca3af;
+  color: var(--muted-2);
 }
 
 
@@ -2670,7 +2674,7 @@ onUnmounted(() => {
   margin-bottom: 24px;
   padding: 6px;
   border-radius: 12px;
-  background: #f3f4f6;
+  background: var(--panel);
 }
 
 
@@ -2680,7 +2684,7 @@ onUnmounted(() => {
   border: 0;
   border-radius: 9px;
   background: transparent;
-  color: #6b7280;
+  color: var(--muted);
   cursor: pointer;
   font-size: 15px;
   transition: 0.2s;
@@ -2688,13 +2692,13 @@ onUnmounted(() => {
 
 
 .tab:hover {
-  color: #111827;
+  color: var(--ink);
 }
 
 
 .tab.active {
-  background: #ffffff;
-  color: #111827;
+  background: var(--surface);
+  color: var(--ink);
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
@@ -2702,7 +2706,7 @@ onUnmounted(() => {
 
 .tab-count {
   margin-left: 5px;
-  color: #9ca3af;
+  color: var(--muted-2);
 }
 
 
@@ -2732,7 +2736,7 @@ onUnmounted(() => {
 
 .section-header p {
   margin: 0;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
 }
 
@@ -2754,7 +2758,8 @@ onUnmounted(() => {
 .product-card {
   overflow: hidden;
   border-radius: 15px;
-  background: #ffffff;
+  border: 1px solid var(--border);
+  background: var(--surface);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
   transition:
     transform 0.2s,
@@ -2787,7 +2792,7 @@ onUnmounted(() => {
   width: 100%;
   height: 210px;
   overflow: hidden;
-  background: #f3f4f6;
+  background: var(--panel);
 }
 
 
@@ -2804,7 +2809,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #9ca3af;
+  color: var(--muted-2);
 }
 
 
@@ -2873,7 +2878,7 @@ onUnmounted(() => {
 
 .product-category {
   margin-bottom: 10px;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
 }
 
@@ -2887,14 +2892,14 @@ onUnmounted(() => {
 
 
 .product-price {
-  color: #111827;
+  color: var(--ink);
   font-size: 21px;
   font-weight: 700;
 }
 
 
 .original-price {
-  color: #9ca3af;
+  color: var(--muted-2);
   font-size: 13px;
   text-decoration: line-through;
 }
@@ -2905,14 +2910,14 @@ onUnmounted(() => {
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 12px;
 }
 
 
 .product-publish {
   margin: -2px 0 10px;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 12px;
 }
 
@@ -2921,7 +2926,7 @@ onUnmounted(() => {
   height: 40px;
   margin-bottom: 15px;
   overflow: hidden;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
   line-height: 20px;
 }
@@ -3017,13 +3022,13 @@ onUnmounted(() => {
 
 
 .sold-text {
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
 }
 
 
 .status-text {
-  color: #6b7280;
+  color: var(--muted);
   font-size: 13px;
 }
 
@@ -3035,7 +3040,7 @@ onUnmounted(() => {
 .no-more {
   padding: 28px 0;
   text-align: center;
-  color: #9ca3af;
+  color: var(--muted-2);
   font-size: 13px;
 }
 
@@ -3063,7 +3068,7 @@ onUnmounted(() => {
 
 .empty p {
   margin: 0;
-  color: #9ca3af;
+  color: var(--muted-2);
 }
 
 
@@ -3129,7 +3134,8 @@ onUnmounted(() => {
   max-width: 500px;
   overflow: hidden;
   border-radius: 16px;
-  background: #ffffff;
+  border: 1px solid var(--border);
+  background: var(--surface);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
@@ -3139,7 +3145,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 20px 22px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border);
 }
 
 
@@ -3155,7 +3161,7 @@ onUnmounted(() => {
   border: 0;
   border-radius: 8px;
   background: transparent;
-  color: #6b7280;
+  color: var(--muted);
   font-size: 25px;
   line-height: 1;
   cursor: pointer;
@@ -3163,7 +3169,7 @@ onUnmounted(() => {
 
 
 .report-close:hover {
-  background: #f3f4f6;
+  background: var(--panel);
 }
 
 
@@ -3185,13 +3191,14 @@ onUnmounted(() => {
   margin: 20px 22px;
   padding: 14px;
   border-radius: 10px;
-  background: #f9fafb;
+  border: 1px solid var(--border);
+  background: var(--panel);
 }
 
 
 .report-product-name {
   overflow: hidden;
-  color: #111827;
+  color: var(--ink);
   font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
@@ -3201,7 +3208,7 @@ onUnmounted(() => {
 
 .report-product-price {
   flex-shrink: 0;
-  color: #111827;
+  color: var(--ink);
   font-size: 16px;
   font-weight: 700;
 }
@@ -3220,7 +3227,7 @@ onUnmounted(() => {
 .report-form label {
   display: block;
   margin-bottom: 8px;
-  color: #374151;
+  color: var(--ink);
   font-size: 14px;
   font-weight: 600;
 }
@@ -3231,10 +3238,11 @@ onUnmounted(() => {
   box-sizing: border-box;
   resize: vertical;
   padding: 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border);
   border-radius: 10px;
   outline: none;
-  color: #111827;
+  background: var(--bg);
+  color: var(--ink);
   font-family: inherit;
   font-size: 14px;
   line-height: 21px;
@@ -3243,12 +3251,12 @@ onUnmounted(() => {
 
 
 .report-form textarea:focus {
-  border-color: #2563eb;
+  border-color: var(--ink);
 }
 
 
 .report-form textarea:disabled {
-  background: #f9fafb;
+  background: var(--panel);
   cursor: not-allowed;
 }
 
@@ -3256,7 +3264,7 @@ onUnmounted(() => {
 .report-counter {
   margin-top: 5px;
   text-align: right;
-  color: #9ca3af;
+  color: var(--muted-2);
   font-size: 12px;
 }
 
@@ -3285,19 +3293,19 @@ onUnmounted(() => {
 
 
 .report-cancel-btn {
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--panel);
+  color: var(--ink);
 }
 
 
 .report-cancel-btn:hover {
-  background: #e5e7eb;
+  opacity: .8;
 }
 
 
 .report-submit-btn {
-  background: #111827;
-  color: #ffffff;
+  background: var(--btn-bg);
+  color: var(--btn-text);
 }
 
 
@@ -3331,7 +3339,8 @@ onUnmounted(() => {
   gap: 20px;
   padding: 20px;
   border-radius: 14px;
-  background: #ffffff;
+  border: 1px solid var(--border);
+  background: var(--surface);
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition:
@@ -3372,7 +3381,7 @@ onUnmounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 20px;
-  color: #9ca3af;
+  color: var(--muted-2);
   font-size: 12px;
 }
 
@@ -3424,8 +3433,8 @@ onUnmounted(() => {
   padding: 7px 12px;
   border: 0;
   border-radius: 7px;
-  background: #111827;
-  color: #ffffff;
+  background: var(--btn-bg);
+  color: var(--btn-text);
   cursor: pointer;
   font-size: 12px;
   transition: 0.2s;
@@ -3442,14 +3451,14 @@ onUnmounted(() => {
    ========================================================= */
 
 .chat-order-btn {
-  background: #f3f4f6;
-  color: #111827;
-  border: 1px solid #d1d5db;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--border);
 }
 
 
 .chat-order-btn:hover {
-  background: #e5e7eb;
+  opacity: .8;
 }
 
 
@@ -3460,7 +3469,7 @@ onUnmounted(() => {
 .loading {
   padding: 80px 20px;
   text-align: center;
-  color: #6b7280;
+  color: var(--muted);
 }
 
 
@@ -3512,44 +3521,205 @@ onUnmounted(() => {
 @media (max-width: 600px) {
 
   .my-products-page {
-    padding: 20px 12px 40px;
+    padding:
+      18px
+      max(12px, env(safe-area-inset-right))
+      40px
+      max(12px, env(safe-area-inset-left));
   }
 
 
   .user-header {
-    padding: 20px;
+    gap: 18px;
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+
+  .user-info {
+    width: 100%;
+    gap: 14px;
+  }
+
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
+
+
+  .user-text {
+    min-width: 0;
+    flex: 1;
+  }
+
+
+  .user-text h1 {
+    overflow: hidden;
+    font-size: 21px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+  .user-text p {
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
   }
 
 
   .user-stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 14px;
+    width: 100%;
+    padding-top: 4px;
+  }
+
+
+  .stat-item {
+    padding: 12px 10px;
+    border-radius: 10px;
+    background: var(--panel);
+  }
+
+
+  .stat-value {
+    overflow: hidden;
+    font-size: 19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+  .stat-label {
+    margin-top: 3px;
+    font-size: 11px;
   }
 
 
   .logout-btn {
     width: 100%;
+    min-height: 42px;
   }
 
 
   .product-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
 
   .tabs {
+    gap: 4px;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 6px 12px;
+    border-radius: 0;
     overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+
+  .tabs::-webkit-scrollbar {
+    display: none;
   }
 
 
   .tab {
+    flex: 0 0 auto;
     min-width: 110px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+
+  .product-card {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    border-radius: 14px;
+  }
+
+
+  .product-card:hover {
+    transform: none;
+  }
+
+
+  .product-image-wrapper {
+    height: 100%;
+    min-height: 164px;
+  }
+
+
+  .product-content {
+    min-width: 0;
+    padding: 13px 14px;
+  }
+
+
+  .product-name {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+
+  .product-category,
+  .product-publish,
+  .product-description {
+    display: none;
+  }
+
+
+  .product-price-row {
+    margin: 7px 0;
+  }
+
+
+  .product-price {
+    font-size: 19px;
+  }
+
+
+  .product-meta {
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+
+
+  .product-actions {
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+
+  .product-actions .btn {
+    min-height: 34px;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+
+  .status-badge {
+    top: 8px;
+    right: 8px;
+    padding: 4px 7px;
+    font-size: 11px;
   }
 
 
   .order-card {
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 17px 15px;
+  }
+
+
+  .order-main {
+    width: 100%;
   }
 
 
@@ -3560,7 +3730,10 @@ onUnmounted(() => {
 
 
   .order-right {
-    min-width: 100px;
+    min-width: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    text-align: left;
   }
 
 
@@ -3576,6 +3749,44 @@ onUnmounted(() => {
 
   .report-dialog {
     max-width: none;
+  }
+
+
+  .sales-card {
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+
+  .section-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+
+  .sales-line-chart {
+    margin-right: -18px;
+  }
+
+
+  .line-chart-svg {
+    min-width: 540px;
+  }
+
+
+  .report-overlay {
+    padding:
+      calc(12px + env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      calc(12px + env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
+  }
+
+
+  .report-dialog {
+    max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);
+    overflow-y: auto;
   }
 
 }

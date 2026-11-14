@@ -198,6 +198,7 @@ import {
   watch
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { Capacitor } from '@capacitor/core'
 
 import { chatApi } from '../api/chat'
 
@@ -379,6 +380,11 @@ function getWebSocketUrl() {
 
   if (!token) {
     return null
+  }
+
+  // APK 里 window.location.host 是 localhost，必须直连线上服务器
+  if (Capacitor.isNativePlatform()) {
+    return `wss://chuhlblog.top/api/chat/ws/${conversationId.value}`
   }
 
   const protocol =
@@ -1566,6 +1572,8 @@ onUnmounted(() => {
   height: 100dvh;
   display: flex;
   flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
   background: #f5f5f5;
   overflow: hidden;
 }
@@ -1812,7 +1820,7 @@ onUnmounted(() => {
 .scroll-bottom-btn {
   position: fixed;
   right: 20px;
-  bottom: 95px;
+  bottom: calc(95px + env(safe-area-inset-bottom));
 
   width: 38px;
   height: 38px;
@@ -1877,7 +1885,11 @@ onUnmounted(() => {
   align-items: flex-end;
   gap: 10px;
 
-  padding: 10px 12px;
+  padding:
+    10px
+    max(12px, env(safe-area-inset-right))
+    10px
+    max(12px, env(safe-area-inset-left));
 
   background: #ffffff;
   border-top: 1px solid #e8e8e8;
@@ -1974,11 +1986,19 @@ onUnmounted(() => {
   }
 
   .input-area {
-    padding: 8px;
+    padding:
+      8px
+      max(8px, env(safe-area-inset-right))
+      8px
+      max(8px, env(safe-area-inset-left));
   }
 
   .send-btn {
     width: 64px;
+  }
+
+  .message-input {
+    font-size: 16px;
   }
 }
 </style>

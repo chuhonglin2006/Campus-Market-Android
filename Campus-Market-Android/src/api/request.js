@@ -1,9 +1,14 @@
 import axios from 'axios'
+import { Capacitor } from '@capacitor/core'
 import { clearUserStorage } from '../utils/session.js'
 
+const API_BASE_URL = Capacitor.isNativePlatform()
+  ? 'https://chuhlblog.top/api'
+  : '/api'
+
 const request = axios.create({
-  baseURL: '/api',
-  timeout: 10000,
+  baseURL: API_BASE_URL,
+  timeout: 15000,
 })
 
 request.interceptors.request.use(
@@ -23,10 +28,10 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => response.data,
   (error) => {
-      if (error?.response?.status === 401) {
-        clearUserStorage()
-        window.dispatchEvent(new CustomEvent('cm-auth-expired'))
-        }
+    if (error?.response?.status === 401) {
+      clearUserStorage()
+      window.dispatchEvent(new CustomEvent('cm-auth-expired'))
+    }
 
     return Promise.reject(error)
   }

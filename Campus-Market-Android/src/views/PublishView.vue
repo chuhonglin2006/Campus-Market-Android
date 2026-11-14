@@ -1181,10 +1181,12 @@ onBeforeUnmount(() => {
 
 .publish-page {
   min-height: 100vh;
+  min-height: 100dvh;
 
   padding: 40px 20px 80px;
 
-  background: #f5f6f8;
+  background: var(--panel);
+  color: var(--ink);
 }
 
 
@@ -1211,7 +1213,7 @@ onBeforeUnmount(() => {
   font-size: 30px;
   font-weight: 700;
 
-  color: #222;
+  color: var(--ink);
 }
 
 
@@ -1220,7 +1222,7 @@ onBeforeUnmount(() => {
 
   font-size: 14px;
 
-  color: #888;
+  color: var(--muted);
 }
 
 
@@ -1231,9 +1233,10 @@ onBeforeUnmount(() => {
 .publish-card {
   padding: 32px;
 
-  border-radius: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
 
-  background: white;
+  background: var(--surface);
 
   box-shadow:
     0 2px 12px
@@ -1259,7 +1262,7 @@ onBeforeUnmount(() => {
   font-size: 18px;
   font-weight: 600;
 
-  color: #222;
+  color: var(--ink);
 }
 
 
@@ -1276,7 +1279,7 @@ onBeforeUnmount(() => {
   font-size: 13px;
   font-weight: normal;
 
-  color: #999;
+  color: var(--muted-2);
 }
 
 
@@ -1285,7 +1288,7 @@ onBeforeUnmount(() => {
 
   font-size: 13px;
 
-  color: #999;
+  color: var(--muted);
 }
 
 
@@ -1315,14 +1318,14 @@ onBeforeUnmount(() => {
 
 
 .image-item {
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
 
-  background: #f3f3f3;
+  background: var(--panel);
 }
 
 
 .image-item.main {
-  border: 2px solid #409eff;
+  border: 2px solid var(--ink);
 }
 
 
@@ -1350,9 +1353,9 @@ onBeforeUnmount(() => {
 
   border-bottom-right-radius: 8px;
 
-  color: white;
+  color: var(--btn-text);
 
-  background: #409eff;
+  background: var(--btn-bg);
 
   font-size: 12px;
 }
@@ -1438,9 +1441,9 @@ onBeforeUnmount(() => {
 
   justify-content: center;
 
-  border: 2px dashed #ddd;
+  border: 2px dashed var(--border);
 
-  background: #fafafa;
+  background: var(--bg);
 
   cursor: pointer;
 
@@ -1449,9 +1452,9 @@ onBeforeUnmount(() => {
 
 
 .upload-box:hover {
-  border-color: #409eff;
+  border-color: var(--ink);
 
-  background: #f5faff;
+  background: var(--panel);
 }
 
 
@@ -1459,7 +1462,7 @@ onBeforeUnmount(() => {
   font-size: 42px;
   font-weight: 200;
 
-  color: #aaa;
+  color: var(--muted-2);
 
   line-height: 1;
 }
@@ -1470,7 +1473,7 @@ onBeforeUnmount(() => {
 
   font-size: 14px;
 
-  color: #666;
+  color: var(--muted);
 }
 
 
@@ -1479,7 +1482,7 @@ onBeforeUnmount(() => {
 
   font-size: 12px;
 
-  color: #aaa;
+  color: var(--muted-2);
 }
 
 
@@ -1502,7 +1505,7 @@ onBeforeUnmount(() => {
   font-size: 14px;
   font-weight: 500;
 
-  color: #333;
+  color: var(--ink);
 }
 
 
@@ -1515,14 +1518,14 @@ onBeforeUnmount(() => {
 
   padding: 12px 14px;
 
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 7px;
 
   outline: none;
 
-  background: white;
+  background: var(--bg);
 
-  color: #333;
+  color: var(--ink);
 
   font-size: 14px;
 
@@ -1534,7 +1537,7 @@ onBeforeUnmount(() => {
 .form-item input:focus,
 .form-item select:focus,
 .form-item textarea:focus {
-  border-color: #409eff;
+  border-color: var(--ink);
 }
 
 
@@ -1559,7 +1562,7 @@ onBeforeUnmount(() => {
 
   font-size: 12px;
 
-  color: #aaa;
+  color: var(--muted-2);
 }
 
 
@@ -1571,7 +1574,7 @@ onBeforeUnmount(() => {
 
   font-size: 12px;
 
-  color: #aaa;
+  color: var(--muted-2);
 }
 
 
@@ -1596,20 +1599,20 @@ onBeforeUnmount(() => {
 
   overflow: hidden;
 
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 7px;
 }
 
 
 .price-input:focus-within {
-  border-color: #409eff;
+  border-color: var(--ink);
 }
 
 
 .price-input span {
   padding-left: 14px;
 
-  color: #999;
+  color: var(--muted-2);
 }
 
 
@@ -1638,9 +1641,10 @@ onBeforeUnmount(() => {
 
   margin-bottom: 20px;
 
-  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 
-  background: #f0f7ff;
+  background: var(--panel);
 }
 
 
@@ -1657,10 +1661,9 @@ onBeforeUnmount(() => {
 
   border-radius: 50%;
 
-  color: white;
+  background: var(--ink);
 
-  background: #409eff;
-
+  color: var(--bg);
   font-size: 13px;
 }
 
@@ -1671,7 +1674,7 @@ onBeforeUnmount(() => {
   font-size: 14px;
   font-weight: 500;
 
-  color: #333;
+  color: var(--ink);
 }
 
 
@@ -1680,7 +1683,7 @@ onBeforeUnmount(() => {
 
   line-height: 1.6;
 
-  color: #777;
+  color: var(--muted);
 }
 
 
@@ -1727,9 +1730,8 @@ onBeforeUnmount(() => {
   border: none;
   border-radius: 7px;
 
-  color: white;
-
-  background: #409eff;
+  background: var(--btn-bg);
+  color: var(--btn-text);
 
   font-size: 16px;
   font-weight: 500;
@@ -1742,7 +1744,7 @@ onBeforeUnmount(() => {
 
 
 .submit-button:hover:not(:disabled) {
-  background: #337ecc;
+  opacity: .86;
 }
 
 
@@ -1760,12 +1762,17 @@ onBeforeUnmount(() => {
 @media (max-width: 700px) {
 
   .publish-page {
-    padding: 20px 12px 50px;
+    padding:
+      18px
+      max(12px, env(safe-area-inset-right))
+      40px
+      max(12px, env(safe-area-inset-left));
   }
 
 
   .publish-card {
-    padding: 20px;
+    padding: 18px 14px;
+    border-radius: 14px;
   }
 
 
@@ -1776,8 +1783,16 @@ onBeforeUnmount(() => {
 
   .image-item,
   .upload-box {
-    width: 105px;
-    height: 105px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+
+  .image-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
   }
 
 
@@ -1785,6 +1800,25 @@ onBeforeUnmount(() => {
     grid-template-columns: 1fr;
 
     gap: 0;
+  }
+
+
+  .form-item input,
+  .form-item select,
+  .form-item textarea {
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+
+  .form-item textarea {
+    min-height: 180px;
+  }
+
+
+  .submit-button {
+    height: 50px;
+    font-size: 15px;
   }
 
 }
